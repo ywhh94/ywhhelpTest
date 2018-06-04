@@ -18,6 +18,7 @@ public class DialogUtils  {
     public static DialogUtils getInstance(){
         if( instance==null ){
             instance = new DialogUtils();
+
         }
         return instance;
     }
