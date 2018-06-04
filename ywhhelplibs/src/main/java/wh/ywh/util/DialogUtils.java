@@ -15,6 +15,10 @@ public class DialogUtils  {
     private static DialogUtils instance;
     private static Dialog alertDialog;
 
+
+
+
+
     public static DialogUtils getInstance(){
         if( instance==null ){
             instance = new DialogUtils();
