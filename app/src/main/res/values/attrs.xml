@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomView">
+        <attr name="size" format="dimension" />
+        <attr name="color" format="color" />
+        <attr name="maxValue" format="float"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="LoadingPointView">
+        <attr name="loadText" format="string"/>   <!--正在加载。。。-->
+        <attr name="loadTextSize" format="dimension"/>
+        <attr name="loadTextColor" format="color"/>
+        <attr name="pointColor" format="color"/>         <!--小圆点的颜色-->
+        <attr name="pointSize" format="dimension"/>      <!--小圆点的大小-->
+        <attr name="pointScaleVaule" format="float"/>  <!--小圆点最小缩放比例 默认0.4f -->
+        <attr name="pointNum" format="integer"/>         <!-- 小圆点数量 默认三个-->
+    </declare-styleable>
+
+</resources>

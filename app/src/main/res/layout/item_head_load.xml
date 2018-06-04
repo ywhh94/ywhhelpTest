@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:load="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ywh.wh.test.LoadingPointView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        load:loadText=" 加载 "
+        load:pointColor="#00ff44"
+        />
+
+</LinearLayout>
