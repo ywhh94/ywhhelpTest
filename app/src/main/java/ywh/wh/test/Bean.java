@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Bean  implements Serializable{
     int i;
 
+
     public int getI() {
         return i;
     }
