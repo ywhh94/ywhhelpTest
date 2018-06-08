@@ -16,7 +16,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import wh.ywh.base.OnRvClickListener;
 import wh.ywh.base.OnRvLongClickListener;
@@ -28,34 +30,47 @@ import wh.ywh.util.PhotoUtil;
 import wh.ywh.util.SpUtil;
 import wh.ywh.util.StrUtil;
 import wh.ywh.util.ToastUtil;
+import ywh.view.circlewheel.CircleWheel;
+import ywh.view.circlewheel.WheelWhole;
+import ywh.wh.test.loop.LoopActivity;
 
 //测试ywhhelplibs
-public class MainActivity extends AppCompatActivity implements OnRvClickListener, OnRvLongClickListener {
+public class MainActivity extends AppCompatActivity implements OnRvClickListener, OnRvLongClickListener,  View.OnClickListener,
+        CircleWheel.DataSelectListener, CircleWheel.CancelListener, CircleWheel.SureListener {
 
     private TextView tv;
     private RecyclerView recyclerView;
     private SimpleDraweeView iv_DraweeView;
     private PhotoUtil photoutil;
+    private CircleWheel circlewheel;
+    TextView tvwheel;
+    TextView takephoto;
+    private TextView loopView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fresco.initialize(this);//在setContentView之前
         setContentView(R.layout.activity_main);
+        tvwheel = (TextView) findViewById(R.id.circlewheel);
+        takephoto = (TextView) findViewById(R.id.takephoto);
+        loopView = (TextView) findViewById(R.id.loopView);
+        loopView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LoopActivity.class));
+            }
+        });
+        tvwheel.setOnClickListener(this);
+        takephoto.setOnClickListener(this);
         testDate();
         testSp();
 
+
+
+
 //        DialogUtils.getInstance().showWindowImage(this);
 
-
-        photoutil = new PhotoUtil(this);
-        photoutil.show();
-        
-        
-        
-        
-        
-        
         
         tv = (TextView)findViewById(R.id.tv);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
@@ -68,19 +83,68 @@ public class MainActivity extends AppCompatActivity implements OnRvClickListener
         FrescoUtil.setImage(iv_DraweeView,"http://p2.qhimgs4.com/t0199516ade911ca217.jpg");
 
         List<String> list = new ArrayList<>();
-        for(int i=0;i<10;i++){
-            list.add(""+i);
-        }
+
         MainAdapter adapter = new MainAdapter(this, R.layout.item_main, list);
         adapter.setHeadView(LayoutInflater.from(this).inflate(R.layout.item_head_load,null));
-        adapter.setFootView(LayoutInflater.from(this).inflate(R.layout.item_foot,null));
         adapter.setOnItemClicked(this);
         adapter.setOnItemLongClicked(this);
 
         recyclerView.setAdapter(adapter);
+        for(int i=0;i<10;i++){
+            list.add(""+i);
+        }
+        adapter.setData(list);
+        adapter.setFootView(LayoutInflater.from(this).inflate(R.layout.item_foot,null));
 
+//        adapter.notifyDataSetChanged();
 //        testIntent();
 //        testCamera();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.circlewheel:
+                List<String> list = new ArrayList<>();
+                for(int i=0;i<10;i++){
+                    list.add(""+i);
+                }
+                Map<Integer,WheelWhole> map = new HashMap<>();
+                WheelWhole wheelWhole = new WheelWhole();
+                wheelWhole.setInitIndex(5)
+                        .setLoop(true)
+                        .setOutTextColor(Color.RED)
+                        .setSelTextColor(Color.RED)
+                        .setmData(list);
+
+                map.put(0,wheelWhole);
+                map.put(1,new WheelWhole(list));
+                map.put(2,new WheelWhole(list));
+                View view = LayoutInflater.from(this).inflate(R.layout.item_foot,null);
+                circlewheel = new CircleWheel.Builder()
+                        .wheelNum(5)
+                        .dataMap(map)
+                        .canceledOnTouchOutside(false)
+                        .dataSelectListener(this,new int[]{0,1,2})
+                        .headTitle("时间选择")
+                        .headView(true,view)
+                        .cancellistener(this)
+                        .sureListener(this)
+                        .build();
+                circlewheel.show(this);
+                view.findViewById(R.id.item_tv).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ToastUtil.toastLong(MainActivity.this,"点击");
+                    }
+                });
+                break;
+
+            case R.id.takephoto:
+                photoutil = new PhotoUtil(this);
+                photoutil.show();
+                break;
+        }
     }
 
     private void testCamera() {
@@ -144,7 +208,6 @@ public class MainActivity extends AppCompatActivity implements OnRvClickListener
                 case 10001:
                    LogUtil.d("相机路径："+photoutil.cameraFile.getAbsolutePath());
                     FrescoUtil.setImage(iv_DraweeView, "file://"+photoutil.cameraFile.getAbsolutePath());
-
                     break;
             }
 //        }
@@ -154,5 +217,28 @@ public class MainActivity extends AppCompatActivity implements OnRvClickListener
 //        else{
 //            LogUtil.e("data kong");
 //        }
+    }
+
+
+    @Override
+    public void onDataSelected(Map<Integer,CircleWheel.BackData> map) {
+        if(map!=null&&map.size()>0){
+            for(int i=0;i<map.size();i++){
+                if(map.containsKey(i)){
+                    CircleWheel.BackData bean= map.get(i);
+                    LogUtil.e("轮："+bean.getTag()+",值为"+bean.getStr());
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onCancel() {
+        circlewheel.cancel();
+    }
+
+    @Override
+    public void onSure() {
+        circlewheel.cancel();
     }
 }

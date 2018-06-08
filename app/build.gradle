@@ -29,4 +29,5 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     testCompile 'junit:junit:4.12'
     compile project(':ywhhelplibs')
+    compile project(':circlewheel')
 }

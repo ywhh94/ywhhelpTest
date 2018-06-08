@@ -135,7 +135,7 @@ public class LoadingPointView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-//        canvas.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2, new Paint());
+        canvas.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2, new Paint());
         drawText(canvas);
         drawPoint(canvas);
         //圆之间间距默认为radius

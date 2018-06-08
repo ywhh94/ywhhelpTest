@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name="ywh.wh.test.SecondActivity"/>
+        <activity android:name=".loop.LoopActivity"/>
     </application>
 
 </manifest>

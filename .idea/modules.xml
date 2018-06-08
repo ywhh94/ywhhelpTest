@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/circlewheel/circlewheel.iml" filepath="$PROJECT_DIR$/circlewheel/circlewheel.iml" />
       <module fileurl="file://$PROJECT_DIR$/ywhhelplib.iml" filepath="$PROJECT_DIR$/ywhhelplib.iml" />
       <module fileurl="file://$PROJECT_DIR$/ywhhelplibs/ywhhelplibs.iml" filepath="$PROJECT_DIR$/ywhhelplibs/ywhhelplibs.iml" />
     </modules>

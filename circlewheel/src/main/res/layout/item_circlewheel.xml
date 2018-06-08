@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#ffffff">
+
+    <com.weigan.loopview.LoopView
+        android:id="@+id/loopView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:text="222"-->
+        <!--android:textColor="#84ff09"-->
+        <!--android:gravity="center"-->
+        <!--android:textSize="20sp"/>-->
+</LinearLayout>
