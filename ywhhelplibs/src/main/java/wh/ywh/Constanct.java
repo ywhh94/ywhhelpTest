@@ -5,6 +5,5 @@ package wh.ywh;
  */
 
 public class Constanct {
-    public static int PHOTO_CAMERA = 10001;
-    public static int PHOTO_PICTURE = 10002;
+
 }

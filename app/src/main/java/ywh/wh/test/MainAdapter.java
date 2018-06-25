@@ -4,12 +4,12 @@ import android.content.Context;
 
 import java.util.List;
 
-import wh.ywh.base.CommonRvAdapter;
+import wh.ywh.base.CommonAdapter;
 
 /**
  * Created by Administrator on 2018-05-29.
  */
-public class MainAdapter extends CommonRvAdapter<String>{
+public class MainAdapter extends CommonAdapter<String> {
 
     private Context mContext;
     public MainAdapter(Context context,int layoutId, List<String> data) {

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <path>
+        <external-path
+            name="images"
+            path="app/"/>
+
+        <root-path
+            name="root_path"
+            path="." />
+
+    </path>
+</resources>
+

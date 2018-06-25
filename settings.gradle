@@ -1,1 +1,1 @@
-include ':app', ':ywhhelplibs', ':circlewheel'
+include ':app', ':ywhhelplibs', ':circlewheel', ':helperlibrary'

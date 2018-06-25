@@ -14,7 +14,7 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.window_choose_image);
+        setContentView(R.layout.window_choose_photo);
         ToastUtil.toastLong(this,"SecondActivitylong1");
         ToastUtil.toastShort(this,"SecondActivitylong2");
         ToastUtil.toastLong(this,"SecondActivitylong3");

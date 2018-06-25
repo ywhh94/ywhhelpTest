@@ -22,7 +22,7 @@ public class LogUtil {
             if(TextUtils.isEmpty(tag)){
                 i(TAG,o);
             }else{
-                Log.i(tag,getStr(o));
+                LogText.e(tag,getStr(o),"info");
             }
         }
     }
@@ -36,7 +36,7 @@ public class LogUtil {
             if(TextUtils.isEmpty(tag)){
                 e(TAG,o);
             }else{
-                Log.e(tag,getStr(o));
+                LogText.e(tag,getStr(o),"err");
             }
         }
     }
@@ -58,6 +58,71 @@ public class LogUtil {
     //boolean?a:b
     private static String getStr(Object o){
         return o==null?"":o.toString();
+    }
+
+
+
+    private static class LogText {
+        private static final String DOUBLE_DIVIDER = "════════════════════════════════════════════\n";
+
+        private String mTag;
+        private String mType;
+
+        public LogText(String tag,String type) {
+            mTag = tag;
+            mType = type;
+        }
+
+        public static void e(String tag, String content,String type) {
+            LogText logText = new LogText(tag,type);
+            logText.setup(content);
+
+        }
+
+        public void setup(String content) {
+            setUpContent(content);
+            setUpFooter();
+        }
+
+        private void setUpFooter() {
+            if("err".equals(mType)){
+                Log.e(mTag, DOUBLE_DIVIDER);
+            }else if("info".equals(mType)){
+                Log.i(mTag, DOUBLE_DIVIDER);
+            }
+
+        }
+
+        public void setUpContent(String content) {
+
+            StackTraceElement targetStackTraceElement = getTargetStackTraceElement();
+
+            if("err".equals(mType)){
+                Log.e(mTag, "(" + targetStackTraceElement.getFileName() + ":"
+                    + targetStackTraceElement.getLineNumber() + ")");
+                Log.e(mTag, content);
+            }else if("info".equals(mType)){
+                Log.i(mTag, "(" + targetStackTraceElement.getFileName() + ":"
+                        + targetStackTraceElement.getLineNumber() + ")");
+                Log.i(mTag, content);
+            }
+        }
+
+        private StackTraceElement getTargetStackTraceElement() {
+            // find the target invoked method
+            StackTraceElement targetStackTrace = null;
+            boolean shouldTrace = false;
+            StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+            for (StackTraceElement stackTraceElement : stackTrace) {
+                boolean isLogMethod = stackTraceElement.getClassName().equals(LogUtil.class.getName());
+                if (shouldTrace && !isLogMethod) {
+                    targetStackTrace = stackTraceElement;
+                    break;
+                }
+                shouldTrace = isLogMethod;
+            }
+            return targetStackTrace;
+        }
     }
 
 }

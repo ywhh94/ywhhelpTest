@@ -8,15 +8,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="ywh.wh.test.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ywh.wh.test.SecondActivity"/>
-        <activity android:name=".loop.LoopActivity"/>
+        <activity android:name=".SecondActivity" />
+        <activity android:name=".loop.TestActivity" />
+        <activity android:name=".loop.LoopActivity" />
+        <activity android:name=".testrecycler.OneActivity" />
+        <activity android:name=".fragmentandactivity.OneActivity" />
+        <activity android:name=".fragmentandactivity.TwoActivity" />
     </application>
 
 </manifest>

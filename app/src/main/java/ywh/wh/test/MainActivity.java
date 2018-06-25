@@ -20,13 +20,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import wh.ywh.base.OnRvClickListener;
-import wh.ywh.base.OnRvLongClickListener;
+import wh.ywh.base.OnItemClickListener;
+import wh.ywh.base.OnItemLongClickListener;
+import wh.ywh.photo.PhotoUtil;
 import wh.ywh.util.DateUtil;
 import wh.ywh.util.FrescoUtil;
 import wh.ywh.util.HanziToPinyin;
 import wh.ywh.util.LogUtil;
-import wh.ywh.util.PhotoUtil;
 import wh.ywh.util.SpUtil;
 import wh.ywh.util.StrUtil;
 import wh.ywh.util.ToastUtil;
@@ -35,7 +35,7 @@ import ywh.view.circlewheel.WheelWhole;
 import ywh.wh.test.loop.LoopActivity;
 
 //测试ywhhelplibs
-public class MainActivity extends AppCompatActivity implements OnRvClickListener, OnRvLongClickListener,  View.OnClickListener,
+public class MainActivity extends AppCompatActivity implements OnItemClickListener, OnItemLongClickListener,  View.OnClickListener,
         CircleWheel.DataSelectListener, CircleWheel.CancelListener, CircleWheel.SureListener {
 
     private TextView tv;
@@ -61,15 +61,18 @@ public class MainActivity extends AppCompatActivity implements OnRvClickListener
                 startActivity(new Intent(MainActivity.this, LoopActivity.class));
             }
         });
+
         tvwheel.setOnClickListener(this);
         takephoto.setOnClickListener(this);
         testDate();
         testSp();
 
 
+        startActivity(new Intent(this, ywh.wh.test.fragmentandactivity.OneActivity.class));
 
 
-//        DialogUtils.getInstance().showWindowImage(this);
+
+//        DialogUtil.getInstance().showWindowImage(this);
 
         
         tv = (TextView)findViewById(R.id.tv);
@@ -142,14 +145,19 @@ public class MainActivity extends AppCompatActivity implements OnRvClickListener
 
             case R.id.takephoto:
                 photoutil = new PhotoUtil(this);
-                photoutil.show();
+                photoutil.setOneText("相机")
+                        .setOneTextColor(R.color.colorPrimary)
+                        .setTextSize(20)
+                        .setTwoText("从相册选择")
+                        .setTwoTextColor(Color.parseColor("#009090"))
+                        .setCancleText("取消啊")
+                        .setCancleTextColor(Color.parseColor("#ffff09"))
+                        .setCancleTextSize(30)
+                        .show();
                 break;
         }
     }
 
-    private void testCamera() {
-        photoutil.openCamera();
-    }
 
     private void testIntent() {
         Intent intent = new Intent(this,SecondActivity.class);
@@ -202,21 +210,21 @@ public class MainActivity extends AppCompatActivity implements OnRvClickListener
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if(resultCode == RESULT_OK){
+        if(resultCode == RESULT_OK){
             LogUtil.d("ok");
             switch (requestCode){
-                case 10001:
-                   LogUtil.d("相机路径："+photoutil.cameraFile.getAbsolutePath());
-                    FrescoUtil.setImage(iv_DraweeView, "file://"+photoutil.cameraFile.getAbsolutePath());
+                case PhotoUtil.PHOTO_CAMERA:
+                   LogUtil.d("相机拍照后的路径："+photoutil.cameraFile.getAbsolutePath());
+//                    FrescoUtil.setImage(iv_DraweeView, "file://"+photoutil.cameraFile.getAbsolutePath());
+                    break;
+                case PhotoUtil.PHOTO_PICTURE:
+                    if(data!=null){
+                        String  pic_path = data.getData().toString();
+                        LogUtil.d("pic_path："+pic_path);
+                    }
                     break;
             }
-//        }
-//        if(data !=null){
-//            LogUtil.d("data:"+data.getStringExtra("ywh"));
-//        }
-//        else{
-//            LogUtil.e("data kong");
-//        }
+        }
     }
 
 
