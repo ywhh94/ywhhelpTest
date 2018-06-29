@@ -21,6 +21,7 @@
         <activity android:name=".testrecycler.OneActivity" />
         <activity android:name=".fragmentandactivity.OneActivity" />
         <activity android:name=".fragmentandactivity.TwoActivity" />
+        <activity android:name=".DataBaseActivity"/>
     </application>
 
 </manifest>

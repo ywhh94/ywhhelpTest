@@ -18,8 +18,8 @@ public class SpUtil {
     private SpUtil(){
         if(App.getInstance() == null){
             LogUtil.i("空");
-        }
-        else{
+            return;
+        } else{
             sharedPreferences = App.getInstance().getSharedPreferences("ywhSpUtil", Activity.MODE_PRIVATE);
         }
         editor = sharedPreferences.edit();

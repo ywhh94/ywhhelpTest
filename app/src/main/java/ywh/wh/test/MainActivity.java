@@ -19,7 +19,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import wh.ywh.base.OnItemClickListener;
 import wh.ywh.base.OnItemLongClickListener;
 import wh.ywh.photo.PhotoUtil;
@@ -38,6 +42,9 @@ import ywh.wh.test.loop.LoopActivity;
 public class MainActivity extends AppCompatActivity implements OnItemClickListener, OnItemLongClickListener,  View.OnClickListener,
         CircleWheel.DataSelectListener, CircleWheel.CancelListener, CircleWheel.SureListener {
 
+    @Bind(R.id.database)
+    TextView database;
+
     private TextView tv;
     private RecyclerView recyclerView;
     private SimpleDraweeView iv_DraweeView;
@@ -46,12 +53,14 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     TextView tvwheel;
     TextView takephoto;
     private TextView loopView;
+    String [] eat = {"手工面","鱼","蔡明伟","盒饭","凉面","兰州拉面"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fresco.initialize(this);//在setContentView之前
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         tvwheel = (TextView) findViewById(R.id.circlewheel);
         takephoto = (TextView) findViewById(R.id.takephoto);
         loopView = (TextView) findViewById(R.id.loopView);
@@ -62,13 +71,19 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
             }
         });
 
+        Random random = new Random();
+        int ran = random.nextInt(5);
+        LogUtil.e(ran);
+        LogUtil.e(eat[ran]);
         tvwheel.setOnClickListener(this);
         takephoto.setOnClickListener(this);
+//        database.setOnClickListener(this);
         testDate();
         testSp();
 
 
         startActivity(new Intent(this, ywh.wh.test.fragmentandactivity.OneActivity.class));
+
 
 
 
@@ -102,6 +117,15 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 //        adapter.notifyDataSetChanged();
 //        testIntent();
 //        testCamera();
+    }
+
+    @OnClick({R.id.database})
+    public void OnClicked(View v){
+        switch (v.getId()) {
+            case R.id.database:
+                startActivity(new Intent(this,DataBaseActivity.class));
+                break;
+        }
     }
 
     @Override
@@ -155,6 +179,10 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                         .setCancleTextSize(30)
                         .show();
                 break;
+//            case R.id.database:
+//                startActivity(new Intent(this,DataBaseActivity.class));
+//
+//                break;
         }
     }
 

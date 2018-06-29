@@ -20,7 +20,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        createPackPath();
+//        createPackPath();
     }
 
     public static App getInstance(){

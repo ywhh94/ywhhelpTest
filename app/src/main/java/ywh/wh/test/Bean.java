@@ -25,7 +25,7 @@ public class Bean  implements Serializable{
 
     @Override
     public String toString() {
-        return "Bean{" +
+        return "BeanDataInfo{" +
                 "i=" + i +
                 '}';
     }

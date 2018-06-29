@@ -89,12 +89,19 @@
             android:layout_height="wrap_content"
             android:text="Hello World!"
             android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/database"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="database"
+            android:gravity="center"
+            android:textSize="20sp"/>
         <android.support.v7.widget.RecyclerView
             android:focusableInTouchMode="false"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
-
     </LinearLayout>
 </ScrollView>

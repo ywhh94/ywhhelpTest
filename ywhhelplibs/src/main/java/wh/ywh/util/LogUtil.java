@@ -22,7 +22,7 @@ public class LogUtil {
             if(TextUtils.isEmpty(tag)){
                 i(TAG,o);
             }else{
-                LogText.e(tag,getStr(o),"info");
+                LogText.log(tag,getStr(o),"info");
             }
         }
     }
@@ -36,7 +36,7 @@ public class LogUtil {
             if(TextUtils.isEmpty(tag)){
                 e(TAG,o);
             }else{
-                LogText.e(tag,getStr(o),"err");
+                LogText.log(tag,getStr(o),"err");
             }
         }
     }
@@ -73,7 +73,7 @@ public class LogUtil {
             mType = type;
         }
 
-        public static void e(String tag, String content,String type) {
+        public static void log(String tag, String content,String type) {
             LogText logText = new LogText(tag,type);
             logText.setup(content);
 
