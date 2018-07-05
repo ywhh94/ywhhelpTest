@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:text="测试baseActivity"
+        style="@style/list_TextView"/>
+    <TextView
+        android:id="@+id/textView2"
+        android:text="测试fragment与activity周期关系"
+        style="@style/list_TextView"/>
+    <TextView
+        android:id="@+id/textView3"
+        android:text="3"
+        style="@style/list_TextView"/>
+
+
+</LinearLayout>
