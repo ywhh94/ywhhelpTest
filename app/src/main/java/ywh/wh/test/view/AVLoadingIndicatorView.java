@@ -1,4 +1,4 @@
-package ywh.wh.test;
+package ywh.wh.test.view;
 
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;

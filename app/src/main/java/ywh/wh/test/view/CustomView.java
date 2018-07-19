@@ -1,4 +1,4 @@
-package ywh.wh.test;
+package ywh.wh.test.view;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+
+import ywh.wh.test.R;
 
 /**
  * Created by Administrator on 2016/10/15.
@@ -36,7 +38,7 @@ public class CustomView extends View{
     public CustomView(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-                attrs,R.styleable.CustomView,0,0);
+                attrs, R.styleable.CustomView,0,0);
         mSize = typedArray.getDimensionPixelSize(R.styleable.CustomView_size,DEFAULT_SIZE);
         mColor = typedArray.getColor(R.styleable.CustomView_color,DEFAULT_COLOR);
         maxValue = typedArray.getFloat(R.styleable.CustomView_maxValue,DEFAULT_MAXVALUE);

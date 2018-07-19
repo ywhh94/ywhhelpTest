@@ -17,14 +17,14 @@
 
 
     <!--用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <!--用于申请调用A-GPS模块-->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
     <!--用于申请获取蓝牙信息进行室内定位-->
-    <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <application
         android:allowBackup="true"
@@ -38,7 +38,7 @@
         <activity android:name=".SecondActivity" />
         <activity android:name=".loop.TestActivity" />
         <activity android:name=".loop.LoopActivity" />
-        <activity android:name=".testrecycler.OneActivity" />
+        <activity android:name=".recycler.RecyclerListActivity" />
         <activity android:name=".fragmentandactivity.OneActivity" />
         <activity android:name=".fragmentandactivity.TwoActivity" />
         <activity android:name=".DataBaseActivity"/>
@@ -53,11 +53,15 @@
         <activity android:name=".gaode.GaodeMapActivity">
 
         </activity>
+        <activity android:name=".recycler.RecyclerActivity"/>
+        <activity android:name=".recycler.RecyclerStaggeredGridActivity"/>
+        <activity android:name=".recycler.RecyclerAnimatorActivity"/>
+        <activity android:name=".recycler.TestSwipeRecyclerViewActivity"/>
 
         <meta-data android:name="com.amap.api.v2.apikey" android:value="c647253d708223d8aff1558da9fe77aa">
 
         </meta-data>
-        <service android:name="com.amap.api.location.APSService"></service>
+        <service android:name="com.amap.api.location.APSService"/>
 
     </application>
 

@@ -1,4 +1,4 @@
-package ywh.wh.test;
+package ywh.wh.test.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +11,8 @@ import android.util.TypedValue;
 import android.view.View;
 
 import com.nineoldandroids.animation.ValueAnimator;
+
+import ywh.wh.test.R;
 
 /**
  * Created by Administrator on 2018-05-29.

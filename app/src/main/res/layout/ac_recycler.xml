@@ -12,15 +12,23 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/textView1"
-            android:text="测试baseActivity"
+            android:text="RecyclerView-List"
             style="@style/list_TextView"/>
         <TextView
             android:id="@+id/textView2"
-            android:text="测试fragment与activity周期关系"
+            android:text="RecyclerView-Gird"
             style="@style/list_TextView"/>
         <TextView
             android:id="@+id/textView3"
-            android:text="RecyclerView"
+            android:text="RecyclerView-StaggeredGrid"
+            style="@style/list_TextView"/>
+        <TextView
+            android:id="@+id/textView4"
+            android:text="Recycler-动画"
+            style="@style/list_TextView"/>
+        <TextView
+            android:id="@+id/textView5"
+            android:text="Recycler-侧滑"
             style="@style/list_TextView"/>
     </LinearLayout>
 </ScrollView>

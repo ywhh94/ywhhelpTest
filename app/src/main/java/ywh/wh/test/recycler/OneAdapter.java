@@ -1,4 +1,4 @@
-package ywh.wh.test.testrecycler;
+package ywh.wh.test.recycler;
 
 import android.content.Context;
 import android.widget.ImageView;

@@ -1,10 +1,13 @@
 package wh.ywh.base;
 
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -50,7 +53,6 @@ public abstract  class CommonAdapter<T>  extends RecyclerView.Adapter<CommonAdap
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
-//        LogUtil.i(""+headView==null?true:false+",pos:"+position);
         if(headView !=null && position ==0 )
             return ;
         if (footView != null && position == getItemCount() - 1)
@@ -79,14 +81,31 @@ public abstract  class CommonAdapter<T>  extends RecyclerView.Adapter<CommonAdap
         else return TYPE_CONTENTVIEW;
     }
 
+    //添加头部
     public void setHeadView(View view){
         this.headView = view;
+        setViewParams(view);
         notifyItemInserted(0);//因为指定了第一个位置头布局，最后一个是底布局，notifyItemInserted(0)参数0没什么用
     }
-
+    //添加尾部
     public void setFootView(View view){
         this.footView = view;
+        setViewParams(view);
         notifyItemInserted(0);
+    }
+
+    /**
+     * 设置头、尾布局的属性
+     * @param view
+     */
+    private void setViewParams(View view) {
+        //如果View是RelativeLayout,显示会与xml配置的属性一样,若View是LinearLayout,则需要设置view的属性
+        if(view instanceof LinearLayout){
+            //设置宽为MATCH_PARENT，则占满整行，否则都是WRAP_CONTENT属性
+            LinearLayout.LayoutParams  layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            view.setLayoutParams(layoutParams);
+        }
     }
 
     public void setData(List<T> data){
@@ -98,6 +117,46 @@ public abstract  class CommonAdapter<T>  extends RecyclerView.Adapter<CommonAdap
     }
     public void setOnItemLongClicked(OnItemLongClickListener listener){
         this.mLongListener = listener;
+    }
+
+    /**
+     * 解决网格布局中，头部和尾部不站一行的问题
+     * @param recyclerView
+     */
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        final RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
+        if (manager instanceof GridLayoutManager) {
+            final GridLayoutManager gridLayoutManager = (GridLayoutManager) manager;
+            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    int viewType = getItemViewType(position);
+                    if (viewType == TYPE_CONTENTVIEW) {
+                        return 1;
+                    }
+                    return gridLayoutManager.getSpanCount();
+                }
+            });
+        }
+    }
+
+    /**
+     * 解决 StaggeredGridLayoutManager布局中，头部和尾部不站一行的问题
+     * @param holder
+     */
+    @Override
+    public void onViewAttachedToWindow(CommonViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        int position = holder.getLayoutPosition();
+        if (TYPE_CONTENTVIEW != getItemViewType(position)){
+            ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+            if (null != lp && lp instanceof StaggeredGridLayoutManager.LayoutParams){
+                StaggeredGridLayoutManager.LayoutParams p = (StaggeredGridLayoutManager.LayoutParams) lp;
+                p.setFullSpan(true);//占满一行
+            }
+        }
     }
 
     @Override
@@ -146,11 +205,6 @@ public abstract  class CommonAdapter<T>  extends RecyclerView.Adapter<CommonAdap
 //                throw  new NullPointerException("没有找到资源id");
 //            }
 //        }
-
-        public void setSimpleDrawImage(){
-
-        }
-
     }
 
 }
