@@ -17,7 +17,8 @@ public class RecyclerActivity extends BaseHelpActivity  {
         return R.layout.ac_recycler;
     }
 
-    @OnClick({R.id.textView1,R.id.textView2,R.id.textView3,R.id.textView4,R.id.textView5})
+    @OnClick({R.id.textView1,R.id.textView2,R.id.textView3,R.id.textView4,R.id.textView5,
+            R.id.textView6,R.id.textView7})
     public void onClicked(View v){
         switch (v.getId()){
             case R.id.textView1:
@@ -34,6 +35,12 @@ public class RecyclerActivity extends BaseHelpActivity  {
                 break;
             case R.id.textView5:
                 jump(TestSwipeRecyclerViewActivity.class);
+                break;
+            case R.id.textView6:
+                jump(ScrollViewAndRvActivity.class);
+                break;
+            case R.id.textView7:
+                jump(RvAndRvActivity.class);
                 break;
         }
     }

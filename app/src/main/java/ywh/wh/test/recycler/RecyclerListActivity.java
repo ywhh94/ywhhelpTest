@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import wh.ywh.base.OnItemClickListener;
-import wh.ywh.base.OnItemLongClickListener;
+import wh.ywh.base.i.OnItemClickListener;
+import wh.ywh.base.i.OnItemLongClickListener;
 import ywh.wh.test.R;
 
 public class RecyclerListActivity extends AppCompatActivity implements OnItemClickListener, OnItemLongClickListener {

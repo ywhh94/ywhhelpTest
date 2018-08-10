@@ -128,13 +128,12 @@ public class PhotoUtil {
         tv_choose2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(imageNum == 1){
+                if(imageNum == 1)
                     openAlbum();         //选择单图
-                }else{
+                else{
                     Intent intent = new Intent(mActivity,PhotoClassifyActivity.class);
                     mActivity.startActivity(intent);
                 }
-
             }
         });
         tv_cancel.setOnClickListener(new View.OnClickListener() {
@@ -150,8 +149,6 @@ public class PhotoUtil {
             alertDialog.cancel();
         }
     }
-
-
     /**
      * 打开相机
      */

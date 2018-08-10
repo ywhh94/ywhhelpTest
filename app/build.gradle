@@ -5,7 +5,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
     defaultConfig {
-        applicationId "ywh.wh.ywhhelplib"
+        applicationId "ywh.wh.test"
         minSdkVersion 17
         targetSdkVersion 19
         versionCode 1
@@ -34,4 +34,8 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     testCompile 'junit:junit:4.12'
     compile files('libs/AMap_Location_V4.1.0_20180619.jar')
+    compile project(':ywhphoto')
+
+    compile 'com.github.yyyangwenhao:SlideSlipRecyclerView:v1.0'
+
 }

@@ -9,16 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
+import wh.ywh.base.i.OnItemClickListener;
+import wh.ywh.base.i.OnItemLongClickListener;
 
 /**
- *
+ * 通用RecyclerView.Adapter
  * Created by yangwenhao on 2018-05-15.
  */
 
-public abstract  class CommonAdapter<T>  extends RecyclerView.Adapter<CommonAdapter.CommonViewHolder>
+public abstract class CommonAdapter<T> extends RecyclerView.Adapter<CommonAdapter.CommonViewHolder>
         implements View.OnClickListener, View.OnLongClickListener {
 
     private int mLayoutId;
@@ -34,32 +35,33 @@ public abstract  class CommonAdapter<T>  extends RecyclerView.Adapter<CommonAdap
     private static final int TYPE_CONTENTVIEW = 0x0001;  //内容
     private static final int TYPE_FOOTVIEW = 0x0002;     //底布局
 
-    public CommonAdapter(int layoutId, List<T> data){
-        if(layoutId == 0){
+    public CommonAdapter(int layoutId, List<T> data) {
+        if (layoutId == 0) {
             throw new NullPointerException("请设置资源id");
         }
         this.mLayoutId = layoutId;
-        this.mData = (data == null?new ArrayList<T>():data);
+        this.mData = (data == null ? new ArrayList<T>() : data);
     }
+
     @Override
     public CommonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == TYPE_HEADVIEW)
+        if (viewType == TYPE_HEADVIEW)
             return new CommonViewHolder(headView);
-        else if(viewType == TYPE_FOOTVIEW)
+        else if (viewType == TYPE_FOOTVIEW)
             return new CommonViewHolder(footView);
         else
-            return new CommonViewHolder(LayoutInflater.from(parent.getContext()).inflate(mLayoutId,parent,false));
+            return new CommonViewHolder(LayoutInflater.from(parent.getContext()).inflate(mLayoutId, parent, false));
     }
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
-        if(headView !=null && position ==0 )
-            return ;
+        if (headView != null && position == 0)
+            return;
         if (footView != null && position == getItemCount() - 1)
             return;
-        if(headView != null)
+        if (headView != null)
             position--;
-        bindData(holder,mData.get(position),position);
+        bindData(holder, mData.get(position), position);
         holder.itemView.setOnClickListener(this);
         holder.itemView.setOnLongClickListener(this);
         holder.itemView.setTag(position);
@@ -69,26 +71,28 @@ public abstract  class CommonAdapter<T>  extends RecyclerView.Adapter<CommonAdap
 
     @Override
     public int getItemCount() {
-        if(headView != null && footView != null) return mData.size()+2;
-        else if((headView != null && footView == null)||(headView == null && footView != null)) return mData.size()+1;
+        if (headView != null && footView != null) return mData.size() + 2;
+        else if ((headView != null && footView == null) || (headView == null && footView != null))
+            return mData.size() + 1;
         return mData.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if(headView != null && position == 0) return TYPE_HEADVIEW;
-        else if(footView != null && position == (mData.size()+1)) return TYPE_FOOTVIEW;
+        if (headView != null && position == 0) return TYPE_HEADVIEW;
+        else if (footView != null && position == (mData.size() + 1)) return TYPE_FOOTVIEW;
         else return TYPE_CONTENTVIEW;
     }
 
     //添加头部
-    public void setHeadView(View view){
+    public void setHeadView(View view) {
         this.headView = view;
         setViewParams(view);
         notifyItemInserted(0);//因为指定了第一个位置头布局，最后一个是底布局，notifyItemInserted(0)参数0没什么用
     }
+
     //添加尾部
-    public void setFootView(View view){
+    public void setFootView(View view) {
         this.footView = view;
         setViewParams(view);
         notifyItemInserted(0);
@@ -96,31 +100,34 @@ public abstract  class CommonAdapter<T>  extends RecyclerView.Adapter<CommonAdap
 
     /**
      * 设置头、尾布局的属性
+     *
      * @param view
      */
     private void setViewParams(View view) {
         //如果View是RelativeLayout,显示会与xml配置的属性一样,若View是LinearLayout,则需要设置view的属性
-        if(view instanceof LinearLayout){
+        if (view instanceof LinearLayout) {
             //设置宽为MATCH_PARENT，则占满整行，否则都是WRAP_CONTENT属性
-            LinearLayout.LayoutParams  layoutParams = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             view.setLayoutParams(layoutParams);
         }
     }
 
-    public void setData(List<T> data){
+    public void setData(List<T> data) {
         mData = data;
         notifyDataSetChanged();
     }
-    public void setOnItemClicked(OnItemClickListener listener){
+
+    public void setOnItemClicked(OnItemClickListener listener) {
         this.mListener = listener;
     }
-    public void setOnItemLongClicked(OnItemLongClickListener listener){
+
+    public void setOnItemLongClicked(OnItemLongClickListener listener) {
         this.mLongListener = listener;
     }
 
     /**
-     * 解决网格布局中，头部和尾部不站一行的问题
+     * 解决网格布局中，头部和尾部不占一行的问题
      * @param recyclerView
      */
     @Override
@@ -144,32 +151,33 @@ public abstract  class CommonAdapter<T>  extends RecyclerView.Adapter<CommonAdap
 
     /**
      * 解决 StaggeredGridLayoutManager布局中，头部和尾部不站一行的问题
+     *
      * @param holder
      */
     @Override
     public void onViewAttachedToWindow(CommonViewHolder holder) {
         super.onViewAttachedToWindow(holder);
         int position = holder.getLayoutPosition();
-        if (TYPE_CONTENTVIEW != getItemViewType(position)){
+        if (TYPE_CONTENTVIEW != getItemViewType(position)) {
             ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
-            if (null != lp && lp instanceof StaggeredGridLayoutManager.LayoutParams){
-                StaggeredGridLayoutManager.LayoutParams p = (StaggeredGridLayoutManager.LayoutParams) lp;
-                p.setFullSpan(true);//占满一行
+            if (null != lp && lp instanceof StaggeredGridLayoutManager.LayoutParams) {
+                StaggeredGridLayoutManager.LayoutParams layoutParams = (StaggeredGridLayoutManager.LayoutParams) lp;
+                layoutParams.setFullSpan(true);//占满一行
             }
         }
     }
 
     @Override
     public void onClick(View v) {
-        if(mListener != null){
-            mListener.onItemClick((int)v.getTag(),v);
+        if (mListener != null) {
+            mListener.onItemClick((int) v.getTag(), v);
         }
     }
 
     @Override
     public boolean onLongClick(View v) {
-        if(mLongListener != null){
-            return  mLongListener.onItemLongClick((int)v.getTag(),v);
+        if (mLongListener != null) {
+            return mLongListener.onItemLongClick((int) v.getTag(), v);
         }
         return false; //同时有点击和长按时，返回true,不会触发点击，返回false,up时会触发点击
     }
@@ -177,6 +185,7 @@ public abstract  class CommonAdapter<T>  extends RecyclerView.Adapter<CommonAdap
 
     public static class CommonViewHolder extends RecyclerView.ViewHolder {
         private SparseArray<View> sparseArray;
+
         public CommonViewHolder(View itemView) {
             super(itemView);
             sparseArray = new SparseArray<>();
@@ -191,20 +200,13 @@ public abstract  class CommonAdapter<T>  extends RecyclerView.Adapter<CommonAdap
             return (T) view;
         }
 
-        public void setText(int viewId,String str){
+        public void setText(int viewId, String str) {
             View view = findView(viewId);
-            if( view == null){
-                throw  new NullPointerException("没有找到资源id");
+            if (view == null) {
+                throw new NullPointerException("没有找到资源id");
             }
-            ((TextView)view).setText(""+str);
+            ((TextView) view).setText(str);
         }
-
-//        public void setImage(int viewId,String url){
-//            View view = findView(viewId);
-//            if( view == null){
-//                throw  new NullPointerException("没有找到资源id");
-//            }
-//        }
     }
 
 }

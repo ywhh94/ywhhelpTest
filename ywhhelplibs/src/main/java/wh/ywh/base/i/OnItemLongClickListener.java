@@ -1,8 +1,9 @@
-package wh.ywh.base;
+package wh.ywh.base.i;
 
 import android.view.View;
 
 /**
+ * 长按事件
  * Created by Administrator on 2018-05-29.
  */
 

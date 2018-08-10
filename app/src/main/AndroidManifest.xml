@@ -53,11 +53,14 @@
         <activity android:name=".gaode.GaodeMapActivity">
 
         </activity>
+        
         <activity android:name=".recycler.RecyclerActivity"/>
         <activity android:name=".recycler.RecyclerStaggeredGridActivity"/>
         <activity android:name=".recycler.RecyclerAnimatorActivity"/>
         <activity android:name=".recycler.TestSwipeRecyclerViewActivity"/>
-
+        <activity android:name=".recycler.ScrollViewAndRvActivity"/>
+        <activity android:name=".recycler.RvAndRvActivity"/>
+        <activity android:name=".intercep.InterceptTestActivity"/>
         <meta-data android:name="com.amap.api.v2.apikey" android:value="c647253d708223d8aff1558da9fe77aa">
 
         </meta-data>

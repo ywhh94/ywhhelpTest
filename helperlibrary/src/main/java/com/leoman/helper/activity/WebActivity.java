@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.leoman.helper.BaseAcHelper;
 import com.leoman.helper.HelperLibrary;
 import com.leoman.helper.R;
+import com.leoman.helper.luban.Luban;
 
 /**
  * Created by spurs on 2017/3/28.
@@ -35,6 +36,7 @@ public class WebActivity extends BaseAcHelper {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.ac_web);
         flag = getIntent().getIntExtra("flag", 0);//0--url  1--富文本
         url = getIntent().getStringExtra("url");

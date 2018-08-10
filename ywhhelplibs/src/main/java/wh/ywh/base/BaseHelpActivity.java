@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
 import java.io.Serializable;
-
 import butterknife.ButterKnife;
 import wh.ywh.Constanct;
 import wh.ywh.util.LogUtil;
 
 /**
+ *
  * Created by Administrator on 2017-07-05.
  */
 
@@ -24,10 +23,14 @@ public abstract class BaseHelpActivity extends AppCompatActivity implements View
         initWindows();
         Bundle bundle = getIntent().getExtras();
         if(initArgs(bundle)){
-            setContentView(setLayout());
-            ButterKnife.bind(this);
-            initWidget();
-            initData();
+            if(setLayout() == 0 ){
+                throw new NullPointerException("请设置布局id");
+            }else{
+                setContentView(setLayout());
+                ButterKnife.bind(this);
+                initWidget();
+                initData();
+            }
         }
     }
 
@@ -57,6 +60,7 @@ public abstract class BaseHelpActivity extends AppCompatActivity implements View
      */
     protected void initWidget() {
     }
+
     protected void initData() {
     }
     

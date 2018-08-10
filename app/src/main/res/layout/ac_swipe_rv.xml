@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <wh.ywh.base.SwipeRecyclerView
+    <wh.ywh.base.SideSlipRecyclerView2
         android:id="@+id/swipeRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:splitMotionEvents="false" />
 
 </LinearLayout>

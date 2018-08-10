@@ -33,12 +33,6 @@ public class CommonItemDecoration extends RecyclerView.ItemDecoration {
             this.mContext = context;
         }
 
-//        int w = WindowUtil.getWindowWidth(mContext);
-//        this.top =top*w/750;
-//        this.bottom =bottom*w/750;
-//        this.left = left*w/750;
-//        this.right =right*w/750;
-//        this.h = h*w/750;
     }
 
 

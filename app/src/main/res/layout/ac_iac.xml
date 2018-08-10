@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ywh.wh.test.intercep.MyLinearLayout
+        android:id="@+id/ll"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical">
+
+        <ywh.wh.test.intercep.TestView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="111"
+            android:gravity="center"/>
+        <ywh.wh.test.intercep.TestView
+            android:id="@+id/tv2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="222"
+            android:gravity="center"
+            android:background="#ffffff"/>
+
+    </ywh.wh.test.intercep.MyLinearLayout>
+
+    <ywh.wh.test.intercep.MyLinearLayout2
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#ff0000">
+        <ywh.wh.test.intercep.MyLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffffff"/>
+    </ywh.wh.test.intercep.MyLinearLayout2>
+</LinearLayout>

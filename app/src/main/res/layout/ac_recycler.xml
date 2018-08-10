@@ -30,5 +30,14 @@
             android:id="@+id/textView5"
             android:text="Recycler-侧滑"
             style="@style/list_TextView"/>
+        <TextView
+            android:id="@+id/textView6"
+            android:text="ScrollView嵌套RecyclerView/ListView"
+            style="@style/list_TextView"/>
+
+        <TextView
+            android:id="@+id/textView7"
+            android:text="RecyclerView嵌套RecyclerView/ListView"
+            style="@style/list_TextView"/>
     </LinearLayout>
 </ScrollView>
