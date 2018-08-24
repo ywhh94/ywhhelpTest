@@ -43,6 +43,6 @@ public class OneAdapter extends CommonAdapter<String>{
 //                .centerCrop()
                 .priority( Priority.LOW )                    // 加载优先级
                 .into((ImageView)holder.findView(R.id.item_iv));
-
+        
     }
 }

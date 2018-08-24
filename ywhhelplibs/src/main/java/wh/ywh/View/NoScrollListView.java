@@ -2,22 +2,23 @@ package wh.ywh.View;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.GridView;
+import android.widget.ListView;
 
 /**
+ * 解决嵌套的listView,gridView高度显示不全的问题
  * Created by Administrator on 2018-08-10.
  */
 
-public class NestGridView extends GridView {
-    public NestGridView(Context context) {
+public class NoScrollListView extends ListView {
+    public NoScrollListView(Context context) {
         super(context);
     }
 
-    public NestGridView(Context context, AttributeSet attrs) {
+    public NoScrollListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public NestGridView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public NoScrollListView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

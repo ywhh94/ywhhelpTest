@@ -15,7 +15,6 @@ import java.util.Map;
  * 用于LinearLayout中包含RecyclerView时，拦截RecyclerView的点击事件，
  * 其他View不拦截，
  * 一般用户当RecyclerView/listView 中itemView还嵌套有RecyclerView时，itemView用此 NLinearLayout布局
- * 后续升级测试listView,GridView
  * Created by Administrator on 2018-08-03.
  */
 
@@ -97,7 +96,7 @@ public class NestRLGRelativeLayout extends LinearLayout {
         }
     }
 
-    //listView/GridView
+    //  listView/GridView
     public void setInterceptView(AbsListView absListView, boolean isIntercept){
         if(map!=null&&!map.containsKey(absListView)){
             map.put(absListView,isIntercept);

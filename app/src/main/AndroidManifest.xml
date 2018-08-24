@@ -35,8 +35,11 @@
         <activity android:name=".MainActivity">
 
         </activity>
+        <activity android:name=".ListMapActivity"/>
         <activity android:name=".SecondActivity" />
         <activity android:name=".loop.TestActivity" />
+        <activity android:name=".webview.WebViewActivity"/>
+        <activity android:name=".loadMorerv.TestLoadMoreRvActivity"/>
         <activity android:name=".loop.LoopActivity" />
         <activity android:name=".recycler.RecyclerListActivity" />
         <activity android:name=".fragmentandactivity.OneActivity" />

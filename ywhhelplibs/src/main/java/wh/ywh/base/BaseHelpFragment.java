@@ -42,9 +42,9 @@ public abstract class BaseHelpFragment extends Fragment {
         initData();
     }
 
-    protected abstract void initData();
+    protected void initData(){}
 
-    protected abstract void initView(View view);
+    protected  void initView(View view){}
 
     protected abstract int setLayout();
 
